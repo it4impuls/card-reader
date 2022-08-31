@@ -8,14 +8,14 @@ class IdNotifier:
     """
 
     @abstractmethod
-    def add_listener(listener : IdListener) -> None:
+    def add_listener(self, listener : IdListener) -> None:
         """ registers a listener to be notified on Id events
 
         :param listener: the object of a listener
         """
 
     @abstractmethod
-    def remove_listener(listener : IdListener) -> None:
+    def remove_listener(self, listener : IdListener) -> None:
         """ removes a registered listener
 
         :param listener: the object of a listener

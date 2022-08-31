@@ -10,7 +10,7 @@ class IdListener:
     """
 
     @abstractmethod
-    def notify_id_presented(id: str, deviceMarker: str) -> None:
+    def notify_id_presented(self, id: str, deviceMarker: str) -> None:
         """
         notify_id_presented is called a new id becomes known
 
@@ -19,7 +19,7 @@ class IdListener:
         """
 
     @abstractmethod
-    def notify_id_removed(deviceMarker: str) -> None:
+    def notify_id_removed(self, deviceMarker: str) -> None:
         """
         notify_id_removed is called when the id readout is cleared
         e.g. because the card was removed
