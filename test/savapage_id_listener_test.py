@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 import unittest
 from unittest.mock import patch
@@ -9,13 +10,14 @@ from savapage_id_listener import SavapageIdListener
 class SavapageIdListenerTest(unittest.TestCase):
 
 
-    
+    @unittest.skipIf(os.getenv('CI'), "run on CI")
     def test_createListener(self):
         listener = SavapageIdListener()
         listener.run()
         time.sleep(1)
         listener.stop()
 
+    @unittest.skipIf(os.getenv('CI'), "run on CI")
     def test_runListenerTwice(self):
         listener = SavapageIdListener()
         listener.run()
@@ -37,7 +39,7 @@ class SavapageIdListenerTest(unittest.TestCase):
         self.assertTrue(mock.called)
         mock.assert_called_with(id)
 
-
+    @unittest.skipIf(os.getenv('CI'), "run on CI")
     def test__notify_savapage_server(self):
         listener = SavapageIdListener()
         id = "123456789"
