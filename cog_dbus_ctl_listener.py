@@ -14,9 +14,11 @@ class CogDBusCtlListener(IdListener):
     DBUS_ADDRESS = "com.igalia.Cog"
 
     def __init__(self) -> None:
+        logging.info("beginning dbus setup")
         self.system_bus = dbus.SystemBus()
         self.connection = self.system_bus.get_object('com.igalia.Cog', '/com/igalia/Cog')
         self.actions = dbus.Interface(self.connection, dbus_interface='org.gtk.Actions')
+        logging.info("dbus setup complete")
 
 
     def _getUrlForId(self, id: str) -> str:
