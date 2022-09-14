@@ -35,9 +35,11 @@ plugs:
     interface: dbus
     bus: system
     name: com.igalia.Cog
+    allow-auto-connection: true
   serial-port:
     interface: serial-port
-    path: /dev/ttyUSB0
+    usb-vendor: 0x1a86
+    usb-product: 0x7523
 
 apps:
   card-reader:
