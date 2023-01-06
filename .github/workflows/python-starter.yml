@@ -30,7 +30,8 @@ jobs:
       - name: Run Tests
         run: |
           python -m unittest ./test/savapage_id_listener_test.py
-      - uses: diddlesnaps/snapcraft-multiarch-action@v1
+      - name: Snapcraft build
+        run: snapcraft
         id: snapcraft
       - uses: actions/upload-artifact@v2
         with:
