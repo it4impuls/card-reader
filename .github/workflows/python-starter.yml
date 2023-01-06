@@ -30,3 +30,11 @@ jobs:
       - name: Run Tests
         run: |
           python -m unittest ./test/savapage_id_listener_test.py
+      - uses: snapcore/action-build@v1
+        name: Build snap
+        id: snapcraft
+      - uses: actions/upload-artifact@v3
+        with:
+          name: card-reader
+          path: ${{ steps.snapcraft.outputs.snap }}
+          
