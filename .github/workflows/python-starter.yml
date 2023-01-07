@@ -33,8 +33,13 @@ jobs:
       - name: Snapcraft build
         run: snapcraft
         id: snapcraft
+      - uses: the-coding-turtle/ga-yaml-parser@v0.1
+        name: Parse Snapcraft File
+        id: parse-snapcraft
+        with:
+          directory: "snapcraft.yaml"
       - uses: actions/upload-artifact@v2
         with:
-          name: snap
-          path: ${{ steps.snapcraft.outputs.snap }}
+          name: amd64_snap
+          path: ${{ steps.parse-snapcraft.outputs.name }}_${{ steps.parse-snapcraft.outputs.version }}_amd64.snap
           
