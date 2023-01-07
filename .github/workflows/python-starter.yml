@@ -33,7 +33,7 @@ jobs:
       - name: Snapcraft build
         run: snapcraft
         id: snapcraft
-      - uses: the-coding-turtle/ga-yaml-parser@v0.1
+      - uses: the-coding-turtle/ga-yaml-parser@v0.1.2
         name: Parse Snapcraft File
         id: parse-snapcraft
         with:
