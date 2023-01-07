@@ -30,9 +30,6 @@ jobs:
       - name: Run Tests
         run: |
           python -m unittest ./test/savapage_id_listener_test.py
-  package:
-    runs-on: monitoring
-    steps:
       - name: Snapcraft build
         run: snapcraft
         id: snapcraft
