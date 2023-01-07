@@ -37,7 +37,7 @@ jobs:
         name: Parse Snapcraft File
         id: parse-snapcraft
         with:
-          directory: "snapcraft.yaml"
+          file: "snapcraft.yaml"
       - uses: actions/upload-artifact@v2
         with:
           name: amd64_snap
