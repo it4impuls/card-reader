@@ -30,6 +30,9 @@ jobs:
       - name: Run Tests
         run: |
           python -m unittest ./test/savapage_id_listener_test.py
+  package:
+    runs-on: monitoring
+    steps:
       - name: Snapcraft build
         run: snapcraft
         id: snapcraft
@@ -42,4 +45,10 @@ jobs:
         with:
           name: amd64_snap
           path: ${{ steps.parse-snapcraft.outputs.name }}_${{ steps.parse-snapcraft.outputs.version }}_amd64.snap
+      - uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+        with:
+          snap: ${{ steps.parse-snapcraft.outputs.name }}_${{ steps.parse-snapcraft.outputs.version }}_amd64.snap
+          release: edge
           
