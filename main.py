@@ -24,6 +24,7 @@ def main():
 #     notifier2.add_listener(listener1)
 #     notifier2.add_listener(listener3)
 
+    notifier1.run()
     # listener2.run()
 #     notifier2.run()
 
