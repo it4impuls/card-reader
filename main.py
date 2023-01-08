@@ -17,22 +17,22 @@ def main():
     listener2 = SavapageIdListener()
     listener3 = CogDBusCtlListener()
     notifier1 = CliIdNotifier()
-    notifier2 = Rdm3600IdNotifier()
+#     notifier2 = Rdm3600IdNotifier()
     notifier1.add_listener(listener1)
     notifier1.add_listener(listener2)
     notifier1.add_listener(listener3)
-    notifier2.add_listener(listener1)
-    notifier2.add_listener(listener3)
+#     notifier2.add_listener(listener1)
+#     notifier2.add_listener(listener3)
 
     listener2.run()
-    notifier2.run()
+#     notifier2.run()
 
     try:
-        notifier2.join()
+#         notifier2.join()
     except KeyboardInterrupt:
         logging.info("shutting down")
-        notifier2.stop()
-        notifier2.join()
+#         notifier2.stop()
+#         notifier2.join()
         logging.info("shutdown complete")
 
 
