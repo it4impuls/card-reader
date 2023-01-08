@@ -27,13 +27,13 @@ def main():
     listener2.run()
 #     notifier2.run()
 
-    try:
+#     try:
 #         notifier2.join()
-    except KeyboardInterrupt:
-        logging.info("shutting down")
+#     except KeyboardInterrupt:
+#         logging.info("shutting down")
 #         notifier2.stop()
 #         notifier2.join()
-        logging.info("shutdown complete")
+#         logging.info("shutdown complete")
 
 
 
