@@ -14,15 +14,15 @@ from cog_dbus_ctl_listener import CogDBusCtlListener
 def main():
     
     listener1 = LoggingIdListener()
-    # listener2 = SavapageIdListener()
-    # listener3 = CogDBusCtlListener()
+    #listener2 = SavapageIdListener()
+    listener3 = CogDBusCtlListener()
     notifier1 = CliIdNotifier()
     notifier2 = Rdm3600IdNotifier()
     notifier1.add_listener(listener1)
     # notifier1.add_listener(listener2)
-    # notifier1.add_listener(listener3)
+    notifier1.add_listener(listener3)
     notifier2.add_listener(listener1)
-    # notifier2.add_listener(listener3)
+    notifier2.add_listener(listener3)
 
     # notifier1.run()
     # listener2.run()
