@@ -5,6 +5,7 @@
 import logging
 import time
 from cli_id_notifier import CliIdNotifier
+from config_provider import ConfigProviderIni
 from logging_id_listener import LoggingIdListener
 from rdm6300_id_notifier import Rdm3600IdNotifier
 from savapage_id_listener import SavapageIdListener
@@ -12,6 +13,19 @@ from cog_dbus_ctl_listener import CogDBusCtlListener
 
 
 def main():
+
+
+    config = ConfigProviderIni()
+    notifiers = config.getNotifiers()
+    lesteners = config.getListeners()
+    for notifier in notifiers:
+        for listener in lesteners:
+            notifier.add_listerner(listener)
+
+
+
+
+
     
     listener1 = LoggingIdListener()
     # listener2 = SavapageIdListener()
