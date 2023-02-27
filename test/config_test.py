@@ -15,6 +15,8 @@ class ConfigProviderIniTest(unittest.TestCase):
         config = ConfigProviderIni()
         notifiers = config.getNotifiers()
         self.assertEqual(len(notifiers), 1, "No default notifier provided")
+        listeners = config.getListeners()
+        self.assertEqual(len(listeners), 1, "No default listeners provided")
 
 
 
@@ -32,3 +34,8 @@ class ConfigProviderIniTest(unittest.TestCase):
     def test_read_simple(self):
         config = ConfigProviderIni()
         config.read(ConfigProviderIniTest.SIMPLE_INI)
+        notifiers = config.getNotifiers()
+        self.assertEqual(len(notifiers), 1, "No default notifier provided")
+        listeners = config.getListeners()
+        self.assertEqual(len(listeners), 1, "No default listeners provided")
+        self.assertEqual(listeners[0].__class__.__name__, 'SavapageIdListener')

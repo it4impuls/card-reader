@@ -1,4 +1,5 @@
 from simple_id_notifier import SimpleIdNotifier
+import threading
 
 
 class CliIdNotifier(SimpleIdNotifier):
@@ -16,7 +17,12 @@ class CliIdNotifier(SimpleIdNotifier):
 
         super().__init__()
 
+
     def run(self) -> None:
+        self._deviceThread = threading.Thread(target=self.start)
+        self._deviceThread.start()
+
+    def start(self) -> None:
         while(self.keep_running):
             id_read = input()
             id_read = id_read.strip()
@@ -25,7 +31,13 @@ class CliIdNotifier(SimpleIdNotifier):
             else:
                 self.notify_id_removed(self.deviceMarker)
             
+    def stop(self):
+        self.keep_running = False
 
+
+
+    def join(self) -> None:
+        self._deviceThread.join()
 
 
 
