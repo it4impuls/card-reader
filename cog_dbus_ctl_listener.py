@@ -8,7 +8,7 @@ class CogDBusCtlListener(IdListener):
     to the cog instance over dbus
     """
 
-    ON_KEY_PRESENTED_URL_TEMPLATE = "http://mealplan.impulsreha.local:8000/start/{Id}"
+    ON_KEY_PRESENTED_URL_TEMPLATE = "http://mealplan.impulsreha.local:8000/essen/{Id}"
     ON_KEY_REMOVED_URL_TEMPLATE = "http://mealplan.impulsreha.local:8000/"
     DBUS_OBJECT_NAME = "/com/igalia/Cog"
     DBUS_ADDRESS = "com.igalia.Cog"
