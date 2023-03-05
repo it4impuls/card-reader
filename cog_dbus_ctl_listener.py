@@ -1,4 +1,5 @@
 import logging
+from typing_extensions import override
 from id_listener import IdListener
 import dbus
 
@@ -51,6 +52,16 @@ class CogDBusCtlListener(IdListener):
         url = self._getDefaultUrl()
         logging.debug(f"Id removed, Calling {url}")
         self.actions.Activate("open", [url], [])
+
+    @override
+    def configure(self, config: dict[str, str]) -> None:
+        """
+        set the configuration for this listener
+
+        :param config: configuration values as a dictionary
+        """
+        TODO: hier die urls setzen
+
 
 
     # def run(self):

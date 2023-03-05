@@ -20,3 +20,11 @@ class IdNotifier:
 
         :param listener: the object of a listener
         """
+
+    @abstractmethod
+    def configure(self, config: dict[str, str]) -> None:
+        """
+        set the configuration for this notifier
+
+        :param config: configuration values as a dictionary
+        """
