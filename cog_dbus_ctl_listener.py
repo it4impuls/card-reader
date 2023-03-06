@@ -4,6 +4,7 @@ from id_listener import IdListener
 import dbus
 
 
+
 class CogDBusCtlListener(IdListener):
     """ uses the id as part of a web url that is then assigned
     to the cog instance over dbus
@@ -60,7 +61,8 @@ class CogDBusCtlListener(IdListener):
 
         :param config: configuration values as a dictionary
         """
-        TODO: hier die urls setzen
+        # TODO: hier die urls setzen
+        
 
 
 
