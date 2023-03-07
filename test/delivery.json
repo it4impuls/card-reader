@@ -3,13 +3,16 @@
         {
             "type": "CliIdNotifier",
             "options": {
-                "ON_KEY_PRESENTED_URL_TEMPLATE":"http://mealplan.impulsreha.local:8000/essen/{Id}"  
+                "ON_KEY_PRESENTED_URL_TEMPLATE": "http://mealplan.impulsreha.local:8000/essen/{Id}"
             }
         }
     ],
     "listeners": [
         {
-            "type": "CogDBusCtlListener"
+            "type": "CogDBusCtlListener",
+            "options": {
+                "ON_KEY_PRESENTED_URL_TEMPLATE": "http://mealplan.impulsreha.local:8000/essen/{Id}"
+            }
         }
     ]
 }
