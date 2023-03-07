@@ -38,6 +38,7 @@ def main():
             notifier.stop()
         for notifier in notifiers:
             notifier.join()
+
         logging.info("shutdown complete")
 
 
