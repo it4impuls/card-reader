@@ -1,6 +1,8 @@
 import logging
+from typing_extensions import override
 from id_listener import IdListener
 import dbus
+
 
 
 class CogDBusCtlListener(IdListener):
@@ -18,15 +20,17 @@ class CogDBusCtlListener(IdListener):
         self.system_bus = dbus.SystemBus()
         self.connection = self.system_bus.get_object('com.igalia.Cog', '/com/igalia/Cog')
         self.actions = dbus.Interface(self.connection, dbus_interface='org.gtk.Actions')
+        self.ON_KEY_PRESENTED_URL_TEMPLATE = CogDBusCtlListener.ON_KEY_PRESENTED_URL_TEMPLATE
+        self.ON_KEY_REMOVED_URL_TEMPLATE = CogDBusCtlListener.ON_KEY_REMOVED_URL_TEMPLATE
         logging.info("dbus setup complete")
 
 
     def _getUrlForId(self, id: str) -> str:
-        urlForId = CogDBusCtlListener.ON_KEY_PRESENTED_URL_TEMPLATE.format(Id = id) 
+        urlForId = self.ON_KEY_PRESENTED_URL_TEMPLATE.format(Id = id) 
         return urlForId  
 
     def _getDefaultUrl(self) -> str:
-        return CogDBusCtlListener.ON_KEY_REMOVED_URL_TEMPLATE
+        return self.ON_KEY_REMOVED_URL_TEMPLATE
 
 
     def notify_id_presented(self, id: str, deviceMarker: str) -> None:
@@ -51,6 +55,18 @@ class CogDBusCtlListener(IdListener):
         url = self._getDefaultUrl()
         logging.debug(f"Id removed, Calling {url}")
         self.actions.Activate("open", [url], [])
+
+    @override
+    def configure(self, config: dict[str, str]) -> None:
+        """
+        set the configuration for this listener
+
+        :param config: configuration values as a dictionary
+        """
+        # TODO: hier die urls setzen
+        for key_pair in config:
+            self.__setattr__(key_pair, config[key_pair] )
+
 
 
     # def run(self):

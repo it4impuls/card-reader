@@ -26,3 +26,11 @@ class IdListener:
 
         :param deviceMarker: something to identify the origin device in case we are listening to several
         """
+    
+    @abstractmethod
+    def configure(self, config: dict[str, str]) -> None:
+        """
+        set the configuration for this listener
+
+        :param config: configuration values as a dictionary
+        """

@@ -1,0 +1,15 @@
+{
+    "notifiers": [
+        {
+            "type": "CliIdNotifier",
+            "options": {
+                "options": 5
+            }
+        }
+    ],
+    "listeners": [
+        {
+            "type": "SavapageIdListener"
+        }
+    ]
+}
