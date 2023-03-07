@@ -7,6 +7,7 @@ from cli_id_notifier import CliIdNotifier
 from cog_dbus_ctl_listener import CogDBusCtlListener
 from logging_id_listener import LoggingIdListener
 from savapage_id_listener import SavapageIdListener
+from rdm6300_id_notifier import Rdm3600IdNotifier
 
 
 import configparser
@@ -27,12 +28,12 @@ class ConfigProvider:
 
 class ConfigProviderJson(ConfigProvider):
     """Default config Provider, using a json file"""
-    DEFAULT_NOTIFIERS = ['CliIdNotifier']
-    DEFAULT_LISTENERS = ['LoggingIdListener']
+    DEFAULT_NOTIFIERS = ['Rdm3600IdNotifier']
+    DEFAULT_LISTENERS = ['CogDBusCtlListener']
     
     def __init__(self):
-        self.notifiers = self._toObjects(ConfigProviderIni.DEFAULT_NOTIFIERS, dict())
-        self.listeners = self._toObjects(ConfigProviderIni.DEFAULT_LISTENERS, dict())
+        self.notifiers = self._toObjects(ConfigProviderJson.DEFAULT_NOTIFIERS, dict())
+        self.listeners = self._toObjects(ConfigProviderJson.DEFAULT_LISTENERS, dict())
 
 
     # @override
