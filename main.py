@@ -16,10 +16,11 @@ def main():
 
 
     config = ConfigProviderJson()
+    expectedConfigPath = Path.home().joinpath("config.json")
     try:
-        config.read(Path.home().joinpath("config.json"))
+        config.read(expectedConfigPath)
     except:
-        logging.info("no config file found. using defaults")
+        logging.info(f"no config file found at{expectedConfigPath}. using defaults")
     notifiers = config.getNotifiers()
     listeners = config.getListeners()
     for notifier in notifiers:
