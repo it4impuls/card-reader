@@ -64,8 +64,9 @@ class CogDBusCtlListener(IdListener):
         :param config: configuration values as a dictionary
         """
         # TODO: hier die urls setzen
-        for key_pair in config:
-            self.__setattr__(key_pair, config[key_pair] )
+        if config is not None:
+            for key_pair in config:
+                self.__setattr__(key_pair, config[key_pair] )
 
 
 

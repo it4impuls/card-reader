@@ -32,8 +32,8 @@ class ConfigProviderJson(ConfigProvider):
     DEFAULT_LISTENERS = ['CogDBusCtlListener']
     
     def __init__(self):
-        self.notifiers = self._toObjects(ConfigProviderJson.DEFAULT_NOTIFIERS, dict())
-        self.listeners = self._toObjects(ConfigProviderJson.DEFAULT_LISTENERS, dict())
+        self.notifiers = []#self._toObjects(ConfigProviderJson.DEFAULT_NOTIFIERS, dict())
+        self.listeners = []#self._toObjects(ConfigProviderJson.DEFAULT_LISTENERS, dict())
 
 
     # @override
@@ -56,9 +56,13 @@ class ConfigProviderJson(ConfigProvider):
 
         
     def getNotifiers(self) -> list[IdNotifier]:
-        return self.notifiers
+        if len(self.notifiers) == 0:
+            self.notifiers = self._toObjects(ConfigProviderJson.DEFAULT_NOTIFIERS, dict())
+        return self.notifiers 
     
     def getListeners(self) -> list[IdListener]:
+        if len(self.listeners) == 0:
+            self.listeners = self._toObjects(ConfigProviderJson.DEFAULT_LISTENERS, dict())
         return self.listeners
     
     def _toObject(self, className : str, config :dict[str,dict[str,str]] = None) -> list[any]:

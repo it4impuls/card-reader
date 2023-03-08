@@ -1,5 +1,6 @@
 
 import logging
+from typing_extensions import override
 from id_listener import IdListener
 
 logging.basicConfig(level=logging.INFO)
@@ -16,3 +17,15 @@ class LoggingIdListener(IdListener):
     def notify_id_removed(self, deviceMarker: str) -> None:
         logging.info(f"cleared device {deviceMarker}")
         return super().notify_id_removed(deviceMarker)
+    
+    @override
+    def configure(self, config: dict[str, str]) -> None:
+        """
+        set the configuration for this listener
+
+        :param config: configuration values as a dictionary
+        """
+        # TODO: hier die urls setzen
+        if config is not None:
+            for key_pair in config:
+                self.__setattr__(key_pair, config[key_pair] )

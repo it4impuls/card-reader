@@ -38,14 +38,18 @@ class ConfigProviderJsonTest(dbusmock.DBusTestCase):
         self.p_mock.terminate()
         self.p_mock.wait()
 
-    def test_defaults(self):
+    @unittest.skipIf(os.getenv('CI'), "run on CI")
+    def test_default_provider(self):
         config = ConfigProviderJson()
         notifiers = config.getNotifiers()
         self.assertEqual(len(notifiers), 1, "No default notifier provided")
+
+
+    # @unittest.skipIf(os.getenv('CI'), "run on CI")
+    def test_default_listener(self):
+        config = ConfigProviderJson()
         listeners = config.getListeners()
         self.assertEqual(len(listeners), 1, "No default listeners provided")
-
-
 
 
     # @unittest.skipIf(os.getenv('CI'), "run on CI")
@@ -65,10 +69,18 @@ class ConfigProviderJsonTest(dbusmock.DBusTestCase):
         self.assertEqual(len(notifiers), 1, "No notifier provided")
         listeners = config.getListeners()
         self.assertEqual(len(listeners), 1, "No listeners provided")
-        self.assertEqual(listeners[0].__class__.__name__, 'SavapageIdListener')
+        self.assertEqual(listeners[0].__class__.__name__, 'CogDBusCtlListener')
     
     def test_config_file(self):
         config = ConfigProviderJson()
         config.read("test/delivery.json")
         notifiers = config.getNotifiers()
         listeners = config.getListeners()
+
+    def test_config_file_zero_config(self):
+        config = ConfigProviderJson()
+        config.read("test/delivery.json")
+        notifiers = config.getNotifiers()
+        listeners = config.getListeners()
+        listeners[0].configure(None)
+
