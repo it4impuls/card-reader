@@ -1,5 +1,6 @@
 
 import logging
+from typing import Dict
 from typing_extensions import override
 from id_listener import IdListener
 
@@ -19,7 +20,7 @@ class LoggingIdListener(IdListener):
         return super().notify_id_removed(deviceMarker)
     
     @override
-    def configure(self, config: dict[str, str]) -> None:
+    def configure(self, config: Dict[str, str]) -> None:
         """
         set the configuration for this listener
 

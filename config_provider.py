@@ -1,5 +1,6 @@
 
 #reads from 
+from typing import Dict, List
 from id_listener import IdListener
 from id_notifier import IdNotifier
 
@@ -19,10 +20,10 @@ class ConfigProvider:
         pass
         
     
-    def getNotifiers(self) -> list[IdNotifier]:
+    def getNotifiers(self) -> List[IdNotifier]:
         pass
 
-    def getListeners(self) -> list[IdListener]:
+    def getListeners(self) -> List[IdListener]:
         pass
 
 
@@ -55,23 +56,23 @@ class ConfigProviderJson(ConfigProvider):
             self.listeners = newListeners
 
         
-    def getNotifiers(self) -> list[IdNotifier]:
+    def getNotifiers(self) -> List[IdNotifier]:
         if len(self.notifiers) == 0:
             self.notifiers = self._toObjects(ConfigProviderJson.DEFAULT_NOTIFIERS, dict())
         return self.notifiers 
     
-    def getListeners(self) -> list[IdListener]:
+    def getListeners(self) -> List[IdListener]:
         if len(self.listeners) == 0:
             self.listeners = self._toObjects(ConfigProviderJson.DEFAULT_LISTENERS, dict())
         return self.listeners
     
-    def _toObject(self, className : str, config :dict[str,dict[str,str]] = None) -> list[any]:
+    def _toObject(self, className : str, config :Dict[str,Dict[str,str]] = None) -> List[any]:
         resultObject = globals()[className]()
         if config is not None:
             resultObject.configure(config)
         return resultObject
 
-    def _toObjects(self, classNames : list[str], config :dict[str,dict[str,str]] ) -> list[any]:
+    def _toObjects(self, classNames : List[str], config :Dict[str,Dict[str,str]] ) -> List[any]:
         resultObjects = list()
         for className in classNames:
             resultObject = self._toObject(className)
@@ -99,13 +100,13 @@ class ConfigProviderIni(ConfigProvider):
         listenersAsStrings = config['listeners']
 
         
-    def getNotifiers(self) -> list[IdNotifier]:
+    def getNotifiers(self) -> List[IdNotifier]:
         return self._toObjects(ConfigProviderIni.DEFAULT_NOTIFIERS, dict())
     
-    def getListeners(self) -> list[IdListener]:
+    def getListeners(self) -> List[IdListener]:
         return self._toObjects(ConfigProviderIni.DEFAULT_LISTENERS, dict())
     
-    def _toObjects(self, classNames : list[str], config :dict[str,dict[str,str]]) -> list[any]:
+    def _toObjects(self, classNames : List[str], config :Dict[str,Dict[str,str]]) -> List[any]:
         resultObjects = list()
         for className in classNames:
             resultObject = globals()[className]()

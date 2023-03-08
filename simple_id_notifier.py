@@ -1,5 +1,6 @@
 
 
+from typing import List
 from id_listener import IdListener
 from id_notifier import IdNotifier
 
@@ -9,7 +10,7 @@ class SimpleIdNotifier(IdNotifier):
     """
     def __init__(self):
         """creates the internal list"""
-        self._listener_list: list[IdListener] = []
+        self._listener_list: List[IdListener] = []
 
     def add_listener(self, listener: IdListener) -> None:
         self._listener_list.append(listener)

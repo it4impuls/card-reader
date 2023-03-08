@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from typing import Dict
 from id_listener import IdListener
 
 
@@ -22,7 +23,7 @@ class IdNotifier:
         """
 
     @abstractmethod
-    def configure(self, config: dict[str, str]) -> None:
+    def configure(self, config: Dict[str, str]) -> None:
         """
         set the configuration for this notifier
 

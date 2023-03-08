@@ -2,6 +2,7 @@
 
 
 from abc import abstractmethod
+from typing import Dict
 
 
 class IdListener:
@@ -28,7 +29,7 @@ class IdListener:
         """
     
     @abstractmethod
-    def configure(self, config: dict[str, str]) -> None:
+    def configure(self, config: Dict[str, str]) -> None:
         """
         set the configuration for this listener
 
