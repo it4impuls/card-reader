@@ -4,6 +4,7 @@
 
 import logging
 import time
+import os
 from cli_id_notifier import CliIdNotifier
 from config_provider import ConfigProviderJson
 from logging_id_listener import LoggingIdListener
@@ -16,7 +17,8 @@ def main():
 
 
     config = ConfigProviderJson()
-    expectedConfigPath = Path.home().joinpath("config.json")
+    homePath = Path(os.getenv('HOME'))
+    expectedConfigPath = homePath.joinpath("config.json")
     try:
         config.read(expectedConfigPath)
     except:
