@@ -27,7 +27,8 @@ class CogDBusCtlListener(IdListener):
 
 
     def _getUrlForId(self, id: str) -> str:
-        urlForId = self.ON_KEY_PRESENTED_URL_TEMPLATE.format(Id = id) 
+        urlForId = self.ON_KEY_PRESENTED_URL_TEMPLATE.format(Id = id)
+        logging.info(urlForId)
         return urlForId  
 
     def _getDefaultUrl(self) -> str:
