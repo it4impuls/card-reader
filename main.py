@@ -21,8 +21,9 @@ def main():
     expectedConfigPath = commonPath.joinpath("config.json")
     try:
         config.read(expectedConfigPath)
-    except:
-        logging.info(f"no config file found at{expectedConfigPath}. using defaults")
+    except Exception as e:
+        logging.error(f"no config file found at {expectedConfigPath}. using defaults.")
+        logging.error(e)
     notifiers = config.getNotifiers()
     listeners = config.getListeners()
     for notifier in notifiers:
