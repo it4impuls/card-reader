@@ -14,12 +14,10 @@ from cog_dbus_ctl_listener import CogDBusCtlListener
 from pathlib import Path
 
 def main():
-    os.environ['HOME'] = '~/'
-    os.environ['CONFIGPATH'] = '~/snap/card-reader/current'
+
 
     config = ConfigProviderJson()
-    crPath = Path(os.getenv('CONFIGPATH'))
-    # homePath = Path(os.getenv('HOME'))
+    crPath = Path.home()
     expectedConfigPath = crPath.joinpath("config.json")
     try:
         config.read(expectedConfigPath)
