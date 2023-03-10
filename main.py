@@ -17,8 +17,8 @@ def main():
 
 
     config = ConfigProviderJson()
-    crPath = Path.home()
-    expectedConfigPath = crPath.joinpath("config.json")
+    commonPath = Path(os.getenv('SNAP_COMMON'))
+    expectedConfigPath = commonPath.joinpath("config.json")
     try:
         config.read(expectedConfigPath)
     except:
