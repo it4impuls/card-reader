@@ -1,5 +1,7 @@
 import logging
 import threading
+from typing import Dict
+from typing_extensions import override
 from simple_id_notifier import SimpleIdNotifier
 import rdm6300
 
@@ -11,13 +13,15 @@ class Rdm3600IdNotifier(SimpleIdNotifier):
     TODO: move loop to thread
     """
 
+
+
+    DEFAULT_UART_DEVICE = "/dev/ttyUSB0"
     DEVICE_MARKER_TEMPLATE: str = "Rdm3600 id notifier at %s:%s"
 
     def __init__(self):
         self.keep_running = True
-        self.UartDeviceFile = "/dev/ttyUSB0" #TODO: move to config
-        self.deviceMarker = Rdm3600IdNotifier.DEVICE_MARKER_TEMPLATE % (self.UartDeviceFile,id(self))
-        self.UartReader = TN_Reader(self, self.UartDeviceFile)
+        self.UartDeviceFile = Rdm3600IdNotifier.DEFAULT_UART_DEVICE
+        self.UartReader = None
         super().__init__()
 
 
@@ -31,18 +35,38 @@ class Rdm3600IdNotifier(SimpleIdNotifier):
         return self.deviceMarker
 
     def run(self) -> None:
+        self.UartReader = TN_Reader(self, self.UartDeviceFile)
         self._deviceThread = threading.Thread(target=self.UartReader.start)
         self._deviceThread.start()
 
 
     def stop(self):
-        self.UartReader.stop()
+        if self.UartReader is not None:
+            self.UartReader.stop()
+        else:
+            logging.error(f"stopping non existing UartReader")
+
 
 
 
     def join(self) -> None:
         self._deviceThread.join()
             
+
+
+    @override
+    def configure(self, config: Dict[str, str]) -> None:
+        """
+        set the configuration for this listener
+
+        :param config: configuration values as a dictionary
+        """
+        # TODO: hier die urls setzen
+        if config is not None:
+            for key_pair in config:
+                self.__setattr__(key_pair, config[key_pair] )
+        self.deviceMarker = Rdm3600IdNotifier.DEVICE_MARKER_TEMPLATE % (self.UartDeviceFile,id(self))
+
 
 
 
