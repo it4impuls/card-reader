@@ -24,6 +24,8 @@ class Rdm3600IdNotifier(SimpleIdNotifier):
         self.UartReader = None
         super().__init__()
 
+    def set_uartdevicefile(self, path_string: str) -> None:
+        self.UartDeviceFile = path_string
 
     def notify_id_presented(self, Id: str) -> None:
         super().notify_id_presented(Id, self.deviceMarker)

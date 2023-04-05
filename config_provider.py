@@ -32,6 +32,7 @@ class ConfigProviderJson(ConfigProvider):
     """Default config Provider, using a json file"""
     DEFAULT_NOTIFIERS = ['Rdm3600IdNotifier']
     DEFAULT_LISTENERS = ['CogDBusCtlListener']
+    DEFAULT_DEVICE = ['/dev/ttyUSB0']
     
     def __init__(self):
         self.notifiers = []#self._toObjects(ConfigProviderJson.DEFAULT_NOTIFIERS, dict())
@@ -55,6 +56,7 @@ class ConfigProviderJson(ConfigProvider):
             for listener in listenersAsList:            
                 newListeners.append(self._toObject(listener["type"], listener["options"] if  'options' in listener else None))
             self.listeners = newListeners
+            Rdm3600IdNotifier.set_uartdevicefile(config['device'])
 
         
     def getNotifiers(self) -> List[IdNotifier]:

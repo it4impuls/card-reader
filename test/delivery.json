@@ -14,5 +14,6 @@
                 "ON_KEY_PRESENTED_URL_TEMPLATE": "http://mealplan.impulsreha.local:8000/essen/{Id}"
             }
         }
-    ]
+    ],
+    "device": "/dev/ttyUSB1"
 }
