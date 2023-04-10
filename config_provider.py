@@ -9,6 +9,7 @@ from cog_dbus_ctl_listener import CogDBusCtlListener
 from logging_id_listener import LoggingIdListener
 from savapage_id_listener import SavapageIdListener
 from rdm6300_id_notifier import Rdm3600IdNotifier
+from qtbrowser_id_listener import QtBrowserIdListener
 
 
 import configparser

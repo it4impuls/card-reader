@@ -3,22 +3,21 @@
 
 
 import logging
-import time
 import os
-from cli_id_notifier import CliIdNotifier
 from config_provider import ConfigProviderJson
-from logging_id_listener import LoggingIdListener
-from rdm6300_id_notifier import Rdm3600IdNotifier
-from savapage_id_listener import SavapageIdListener
-from cog_dbus_ctl_listener import CogDBusCtlListener
+
 from pathlib import Path
 
 def main():
 
 
     config = ConfigProviderJson()
-    commonPath = Path(os.getenv('SNAP_COMMON'))
-    expectedConfigPath = commonPath.joinpath("config.json")
+    configDirPath = Path.home()
+    try:
+        configDirPath = Path(os.getenv('SNAP_COMMON'))
+    except:
+        configDirPath = Path.cwd()
+    expectedConfigPath = configDirPath.joinpath("config.json")
     try:
         config.read(expectedConfigPath)
     except Exception as e:
@@ -32,6 +31,11 @@ def main():
     
     for notifier in notifiers:
         notifier.run()
+    for listener in listeners:
+        try:
+            listener.run()
+        except:
+            pass
 
 
 
