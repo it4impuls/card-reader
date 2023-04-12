@@ -9,10 +9,11 @@ from PySide2.QtCore import QUrl, QThread, QRunnable, QThreadPool
 from PySide2.QtWebEngineWidgets import QWebEngineView, QWebEnginePage
 from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtWidgets import QApplication
+
+import os
 import sys
 
 # https://stackoverflow.com/questions/10991991/pyside-easier-way-of-updating-gui-from-another-thread
-
 
 
 
@@ -36,6 +37,19 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.webEngineView.load(QUrl("http://www.google.de"))
 
 
+    def closeEvent(self, event):
+        """
+        TODO: find a moreclean solution
+        """
+        os._exit(0)
+
+    def keyPressEvent(self, event):
+        # Re-direct ESC key to closeEvent
+        self.close()
+        # if event.key() == Key_Escape:
+        #     self.close()
+        # elif event.key() == QKeySequence.Copy:
+        #     self.actionCopy.trigger()
 
     def invoke_in_main_thread(self, fn, *args, **kwargs):
         QtCore.QCoreApplication.postEvent(self._invoker,
@@ -116,10 +130,10 @@ class QtBrowserIdListener(IdListener):
     def _createWebView(self):
         self.app = QApplication()
         self.view = MainWindow()
-        self.view.show()
+        self.view.showFullScreen()
         # Thread(target=self.app.exec_).start()
         _invoker = Invoker()
-        target=self.app.exec_()
+        sys.exit(self.app.exec_())
 
     def run(self):
         """

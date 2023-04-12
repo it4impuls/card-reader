@@ -17,7 +17,7 @@ parts:
     source: .
     plugin: python
     requirements: ['requirements.txt']
-    stage-packages: [python3-dbus, python3-pyside2.qtwebenginecore]
+    stage-packages: [python3-dbus, python3-pyside2.qtwebenginecore, python3-pyside2.qtwebenginewidgets]
 
 
 
@@ -30,6 +30,7 @@ parts:
     stage-packages:
       - python3-dbus
       - python3-pyside2.qtwebenginecore
+      - python3-pyside2.qtwebenginewidgets
  
 plugs:
   dbus-cogctl:
