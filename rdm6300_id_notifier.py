@@ -22,6 +22,7 @@ class Rdm3600IdNotifier(SimpleIdNotifier):
         self.keep_running = True
         self.UartDeviceFile = Rdm3600IdNotifier.DEFAULT_UART_DEVICE
         self.UartReader = None
+        self.deviceMarker = 'unspecified'
         super().__init__()
 
 
