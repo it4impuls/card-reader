@@ -43,7 +43,9 @@ plugs:
 apps:
   card-reader:
     command: bin/card-reader.sh card-reader
-    plugs: [dbus-cogctl, serial-port]
+    plugs: [dbus-cogctl, serial-port, desktop ]
+    extensions:
+      - kde-neon
     environment:
       PATH: $SNAP/usr/bin:$SNAP/bin/:$PATH
       PYTHONPATH: $SNAP/usr/lib/python3/site-packages:$SNAP/usr/lib/python3/dist-packages:$PYTHONPATH

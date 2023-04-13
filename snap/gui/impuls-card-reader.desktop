@@ -1,0 +1,3 @@
+[Desktop Entry]
+Exec=card-reader
+Icon=${SNAP}/meta/gui/impuls-card-reader.png
