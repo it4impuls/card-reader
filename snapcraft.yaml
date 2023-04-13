@@ -17,7 +17,7 @@ parts:
     source: .
     plugin: python
     requirements: ['requirements.txt']
-    stage-packages: [python3-dbus]
+    stage-packages: [python3-dbus, python3-pyside2.qtwebenginecore, python3-pyside2.qtwebenginewidgets]
 
 
 
@@ -29,6 +29,8 @@ parts:
       cp -av ./* $SNAPCRAFT_PART_INSTALL/bin
     stage-packages:
       - python3-dbus
+      - python3-pyside2.qtwebenginecore
+      - python3-pyside2.qtwebenginewidgets
  
 plugs:
   dbus-cogctl:

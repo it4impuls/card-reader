@@ -2,3 +2,5 @@ boto==2.49.0
 pyserial==3.5
 rdm6300==0.1.1
 typing_extensions==4.5.0
+
+pyside2
