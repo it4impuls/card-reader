@@ -28,8 +28,8 @@ class MainWindow(QtWidgets.QMainWindow):
         initialUrl = "http://mealplan.impulsreha.local:8000"
 
         self.webEngineView.load(QUrl(initialUrl))
-        self.thread = URLUpdateThread(self)
-        self.thread.view = self
+        # self.thread = URLUpdateThread(self)
+        # self.thread.view = self
 
         self._invoker = Invoker(self)
         # self.webEngineView.load(initialUrl)
