@@ -149,9 +149,9 @@ class QtBrowserIdListener(IdListener):
 
 
 
-class URLUpdateThread(QThread):
+"""class URLUpdateThread(QThread):
     def run(self):
-        invoke_in_main_thread(self.view.updateUrlForView, self.url)
+        invoke_in_main_thread(self.view.updateUrlForView, self.url)"""
 
 class InvokeEvent(QtCore.QEvent):
     EVENT_TYPE = QtCore.QEvent.Type(QtCore.QEvent.registerEventType())
