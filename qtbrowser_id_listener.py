@@ -25,7 +25,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.webEngineView = QWebEngineView()
         self.setCentralWidget(self.webEngineView)
-        initialUrl = "https://www.autodesk.com"
+        initialUrl = "http://mealplan.impulsreha.local:8000"
 
         self.webEngineView.load(QUrl(initialUrl))
         self.thread = URLUpdateThread(self)
