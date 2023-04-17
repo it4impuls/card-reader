@@ -56,8 +56,8 @@ class MainWindow(QtWidgets.QMainWindow):
             InvokeEvent(fn, *args, **kwargs))
 
     def setUrl(self, url: QUrl):
-        self.thread.view = self
-        self.thread.url = url 
+        # self.thread.view = self
+        # self.thread.url = url 
         #self.thread.start()
         self.invoke_in_main_thread(self.updateUrlForView, url)
 
