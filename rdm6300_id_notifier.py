@@ -4,7 +4,7 @@ from typing import Dict
 from typing_extensions import override
 from simple_id_notifier import SimpleIdNotifier
 import rdm6300
-
+import pyudev
 
 class Rdm3600IdNotifier(SimpleIdNotifier):
     """Reads the Id from a rdm3600 module connected over uart
@@ -21,9 +21,19 @@ class Rdm3600IdNotifier(SimpleIdNotifier):
     def __init__(self):
         self.keep_running = True
         self.UartDeviceFile = Rdm3600IdNotifier.DEFAULT_UART_DEVICE
+        self.get_usb_device()
         self.UartReader = None
         self.deviceMarker = 'unspecified'
         super().__init__()
+    
+    def get_usb_device(self):
+        context = pyudev.Context()
+        for device in context.list_devices(subsystem='usb'):
+            if device.sys_name.find("ttyUSB") != -1:
+                self.DEFAULT_UART_DEVICE = device.device_path
+            else:
+                pass
+
 
 
     def notify_id_presented(self, Id: str) -> None:
