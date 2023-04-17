@@ -21,14 +21,14 @@ class Rdm3600IdNotifier(SimpleIdNotifier):
     def __init__(self):
         self.keep_running = True
         self.UartDeviceFile = Rdm3600IdNotifier.DEFAULT_UART_DEVICE
-        self.get_usb_device()
+        self.preset_usb_device()
         self.UartReader = None
         self.deviceMarker = 'unspecified'
         super().__init__()
     
-    def get_usb_device(self):
+    def preset_usb_device(self):
         context = pyudev.Context()
-        for device in context.list_devices(subsystem='usb'):
+        for device in context.list_devices(subsystem='tty'):
             if device.sys_name.find("ttyUSB") != -1:
                 self.DEFAULT_UART_DEVICE = device.device_path
             else:
@@ -77,7 +77,6 @@ class Rdm3600IdNotifier(SimpleIdNotifier):
             for key_pair in config:
                 self.__setattr__(key_pair, config[key_pair] )
         self.deviceMarker = Rdm3600IdNotifier.DEVICE_MARKER_TEMPLATE % (self.UartDeviceFile,id(self))
-
 
 
 
